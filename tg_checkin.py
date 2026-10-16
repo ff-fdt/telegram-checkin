@@ -54,7 +54,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Telegram auto check-in script")
     parser.add_argument("--once", action="store_true", help="run once immediately")
     parser.add_argument("--dry-run", action="store_true", help="print what would run")
-    parser.add_argument("--phone", help="telegram phone number, e.g. +15555550100")
+    parser.add_argument("--phone", help="telegram phone number, e.g. +8613900860001")
     parser.add_argument("--session", help="telethon session name, default: checkin")
     parser.add_argument("--target", help="username / t.me link / numeric chat id")
     parser.add_argument("--text", help="message text to send, default: /checkin")

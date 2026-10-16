@@ -115,7 +115,7 @@ def resolve_request_values(payload_values: dict | None) -> dict[str, str]:
 
 
 class RequestHandler(BaseHTTPRequestHandler):
-    server_version = "TelegramCheckinWeb/1.0"
+    server_version = "TelegramCheckinWeb/1.0.1"
 
     def parse_request(self) -> bool:
         if not super().parse_request():
