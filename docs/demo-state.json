@@ -1,0 +1,43 @@
+{
+  "values": {
+    "TG_TIME": "09:00",
+    "TG_TIMEZONE": "Europe/London",
+    "TG_SIGNIN_TEXT": "/checkin"
+  },
+  "session_ok": true,
+  "effective_timezone": "Europe/London",
+  "timezone_mode": "Europe/London",
+  "service_status": {
+    "loaded": true,
+    "installed": true,
+    "web_port_open": true,
+    "web_monitor_pid": 100
+  },
+  "tasks": [
+    {
+      "id": "demo-1",
+      "enabled": true,
+      "title": "每日练习 · 示例",
+      "target": "@example_practice_bot",
+      "signin_text": "/checkin"
+    },
+    {
+      "id": "demo-2",
+      "enabled": true,
+      "title": "阅读小组 · 示例",
+      "target": "@example_reading_group",
+      "signin_text": "今日签到"
+    },
+    {
+      "id": "demo-3",
+      "enabled": false,
+      "title": "周末计划 · 示例",
+      "target": "@example_weekend_bot",
+      "signin_text": "/daily"
+    }
+  ],
+  "nearest_run": {
+    "title": "每日练习 · 示例",
+    "next_run": "2026-10-18T09:00:00+01:00"
+  }
+}

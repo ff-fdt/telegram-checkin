@@ -6,6 +6,12 @@
 支持选择置顶会话、管理多个任务、统一每日时间、临时测试和 macOS 后台常驻。
 命令行还支持按回复按钮文字或行列位置点击。
 
+## 演示
+
+使用虚构任务展示的实际控制台界面。
+
+![Telegram Check-in dashboard — sample tasks](docs/dashboard-demo.png)
+
 ## 启动
 
 需要 Python 3.10 及以上。
@@ -54,3 +60,5 @@ Linux 上可分别运行 `web_ui.py --no-open` 和 `service_runner.py` 使用前
 命令行的 `.env` 与会话文件保存在当前工作目录。账号配置、会话、任务和日志请留在本机。
 
 采用 MIT 许可证。
+
+[参与贡献](CONTRIBUTING.md)

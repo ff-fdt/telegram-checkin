@@ -6,18 +6,13 @@ A local Telegram check-in scheduler with a browser dashboard, a desktop GUI,
 and a command-line interface. Sign in with your own Telegram account, choose
 chats, and schedule messages and inline-button actions.
 
-## Features
+## Demo
 
-- Browser dashboard for account login, pinned chats, task editing, and logs.
-- One daily schedule for dashboard tasks, following your computer's timezone
-  or an IANA timezone you choose.
-- One-time test schedules and manual runs.
-- Inline button matching by text or zero-based row/column through the CLI.
-- macOS background scheduler and web watchdog.
-- Optional Telegram Desktop session import on macOS.
-- Offline CLI configuration preview with `--dry-run`.
+Dashboard rendered with fictional tasks.
 
-## Start the dashboard
+![Telegram Check-in dashboard — sample tasks](docs/dashboard-demo.png)
+
+## Quick start
 
 Requires Python 3.10+. The desktop GUI also requires Tkinter.
 
@@ -43,6 +38,17 @@ terminal is closed. `start_web.command` opens the dashboard;
 For optional Telegram Desktop import, install
 `python -m pip install -r requirements-desktop.txt`, then click
 **自动读取本机 Telegram**.
+
+## Features
+
+- Browser dashboard for account login, pinned chats, task editing, and logs.
+- One daily schedule for dashboard tasks, following your computer's timezone
+  or an IANA timezone you choose.
+- One-time test schedules and manual runs.
+- Inline button matching by text or zero-based row/column through the CLI.
+- macOS background scheduler and web watchdog.
+- Optional Telegram Desktop session import on macOS.
+- Offline CLI configuration preview with `--dry-run`.
 
 ## Command-line use
 
@@ -81,3 +87,5 @@ requests from its own local origin.
 The base dependencies are pinned in `requirements.lock`; install the optional
 Desktop import dependencies separately. Third-party dependencies retain their
 own licenses.
+
+[Contributing](CONTRIBUTING.md)
