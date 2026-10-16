@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Telegram 自动签到</title>
+    <meta name="theme-color" content="#f7a9cf">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div>
+          <h1>Telegram 自动签到</h1>
+          <p>完全本地运行。浏览器只连接你电脑上的本地地址。</p>
+        </div>
+        <div class="statusstack">
+          <div id="statusText">准备就绪</div>
+          <div id="sessionText">登录状态：未检查</div>
+          <div id="sourceText">登录方式：未检查</div>
+          <div id="timezoneText">当前时区：未检查</div>
+          <div id="testSlotText">临时测试：未设置</div>
+          <div id="serviceText">后台状态：未检查</div>
+          <div id="nextRunText">下次执行：未检查</div>
+        </div>
+      </header>
+
+      <section class="card">
+        <div class="cardhead">
+          <h2>运行设置</h2>
+          <div class="rowgap">
+            <button id="autoImportBtn">自动读取本机 Telegram</button>
+            <button id="saveConfigBtn">保存配置</button>
+          </div>
+        </div>
+        <p class="muted">登录账号后读取置顶会话，设置统一签到时间和各任务的签到命令。</p>
+
+        <div class="quickgrid">
+          <label>统一签到时间<input id="TG_TIME" placeholder="09:00"></label>
+          <div class="testslotbox">
+            <label>临时测试时间<input id="TEST_SLOT_TIME" placeholder="14:30"></label>
+            <div class="rowgap">
+              <button id="saveTestSlotBtn">保存测试位</button>
+              <button id="clearTestSlotBtn">清除测试位</button>
+            </div>
+          </div>
+          <div class="quicknote">
+            <strong>当前模式</strong>
+            <span>所有任务共用一个正式时间。临时测试时间只会额外跑一次，不改正式日程，也不会占用当天正式执行次数。</span>
+          </div>
+        </div>
+
+        <details class="account-settings" open>
+          <summary>账号设置与登录</summary>
+          <div class="quickgrid">
+            <label>API ID<input id="TG_API_ID" inputmode="numeric" autocomplete="off"></label>
+            <label>API hash<input id="TG_API_HASH" type="password" autocomplete="off"></label>
+            <label>手机号<input id="TG_PHONE" type="tel" autocomplete="tel" placeholder="含国家代码"></label>
+            <label>会话名<input id="TG_SESSION" placeholder="checkin"></label>
+            <label>时区<input id="TG_TIMEZONE" placeholder="SYSTEM"></label>
+            <label>登录验证码<input id="LOGIN_CODE" inputmode="numeric" autocomplete="one-time-code"></label>
+            <label>二步验证密码<input id="LOGIN_PASSWORD" type="password" autocomplete="off"></label>
+          </div>
+          <div class="rowgap">
+            <button id="sendCodeBtn">发送登录验证码</button>
+            <button id="completeLoginBtn">完成登录</button>
+          </div>
+        </details>
+        <div class="hiddenfields">
+          <input id="TG_TDESKTOP_PATH" type="hidden">
+          <input id="TG_SIGNIN_TEXT" type="hidden">
+          <input id="TG_JITTER_SECONDS" type="hidden">
+          <input id="TG_REPLY_WAIT_SECONDS" type="hidden">
+          <input id="TG_BUTTON_TEXT" type="hidden">
+          <input id="TG_BUTTON_ROW" type="hidden">
+          <input id="TG_BUTTON_COL" type="hidden">
+        </div>
+      </section>
+
+      <div class="maincols">
+        <section class="card">
+          <div class="cardhead">
+            <h2>读取置顶会话列表</h2>
+            <div class="rowgap">
+              <button id="loadDialogsBtn">读取 Telegram 置顶会话</button>
+              <button id="importDialogsBtn">把选中项加入任务</button>
+            </div>
+          </div>
+          <p class="muted">这里只读取你 Telegram 里置顶的 Bot / 群组 / 频道，并保留 Telegram 里的置顶顺序。</p>
+          <table>
+            <thead>
+              <tr>
+                <th class="tiny"><input id="dialogsCheckAll" type="checkbox"></th>
+                <th class="small">类型</th>
+                <th>名称</th>
+                <th>目标值</th>
+              </tr>
+            </thead>
+            <tbody id="dialogsBody"></tbody>
+          </table>
+        </section>
+
+        <section class="card">
+          <div class="cardhead">
+            <h2>签到任务</h2>
+            <div class="rowgap">
+              <button id="runSelectedBtn">立即运行选中任务</button>
+              <button id="runAllBtn">立即运行全部启用任务</button>
+              <button id="toggleTasksBtn">切换启用</button>
+              <button id="deleteTasksBtn">删除选中</button>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th class="tiny"><input id="tasksCheckAll" type="checkbox"></th>
+                <th class="tiny">启用</th>
+                <th>任务名</th>
+                <th>签到命令</th>
+                <th>目标</th>
+              </tr>
+            </thead>
+            <tbody id="tasksBody"></tbody>
+          </table>
+
+          <div class="editor">
+            <div class="cardhead">
+              <h3>任务命令编辑器</h3>
+              <button id="saveTaskBtn">保存当前任务</button>
+            </div>
+            <div class="tasklite-head">
+              <div class="readonlybox">
+                <span>任务名</span>
+                <strong id="taskSummaryTitle">先点上面某个任务</strong>
+              </div>
+              <div class="readonlybox">
+                <span>目标</span>
+                <strong id="taskSummaryTarget">-</strong>
+              </div>
+              <div class="readonlybox">
+                <span>统一时间</span>
+                <strong id="taskSummaryTime">09:00</strong>
+              </div>
+            </div>
+            <div class="formgrid formgrid-2">
+              <input id="task_title" type="hidden">
+              <input id="task_target" type="hidden">
+              <input id="task_target_kind" type="hidden">
+              <input id="task_time" type="hidden">
+              <input id="task_timezone" type="hidden">
+              <input id="task_jitter_seconds" type="hidden">
+              <input id="task_reply_wait_seconds" type="hidden">
+              <input id="task_button_text" type="hidden">
+              <input id="task_button_row" type="hidden">
+              <input id="task_button_col" type="hidden">
+
+              <label>签到命令<input id="task_signin_text" placeholder="/checkin"></label>
+              <label class="checkboxlike"><input id="task_enabled" type="checkbox"> 启用这个任务</label>
+            </div>
+            <p class="muted">这里每个任务只改自己的签到命令。执行时间统一取上面的“统一签到时间”。</p>
+          </div>
+        </section>
+      </div>
+
+      <section class="card">
+        <div class="cardhead">
+          <h2>后台常驻</h2>
+          <div class="rowgap">
+            <button id="installServiceBtn">安装并启动后台</button>
+            <button id="stopServiceBtn">停止后台</button>
+            <button id="uninstallServiceBtn">卸载后台</button>
+            <button id="refreshStateBtn">刷新状态</button>
+          </div>
+        </div>
+        <p class="muted">签到调度由 macOS 的 launchd 常驻，自修复网页监控由登录项常驻。网页服务如果意外退出，会自动重新拉起。</p>
+      </section>
+
+      <section class="card">
+        <div class="cardhead">
+          <h2>操作日志</h2>
+          <button id="refreshLogsBtn">刷新日志</button>
+        </div>
+        <p class="muted">这里只显示开关、执行、自修复这类操作日志，不显示底层连接噪音。</p>
+        <pre id="logsBox"></pre>
+      </section>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+  </html>

@@ -1,0 +1,290 @@
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --border: #d8dde3;
+  --text: #1f2933;
+  --muted: #5b6875;
+  --accent: #1565c0;
+  --accent-soft: #e8f1fb;
+  --danger: #c62828;
+  --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button,
+.buttonlike {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+button:hover,
+.buttonlike:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 10px;
+  font-size: 14px;
+  background: #fff;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+.page {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  gap: 16px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.topbar h1 {
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+
+.topbar p {
+  color: var(--muted);
+}
+
+.statusstack {
+  min-width: 340px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, #fff 0%, #f8fbff 100%);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.cardhead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.rowgap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.formgrid {
+  display: grid;
+  gap: 12px;
+}
+
+.formgrid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.formgrid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.formgrid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.maincols {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(360px, 0.95fr) minmax(640px, 1.35fr);
+}
+
+.quickgrid {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(260px, 360px) 1fr;
+  gap: 14px;
+  align-items: end;
+}
+
+.testslotbox {
+  display: grid;
+  gap: 8px;
+}
+
+.quicknote {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fbfcfd;
+  padding: 12px 14px;
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.hiddenfields {
+  display: none;
+}
+
+.buttonmode {
+  display: grid;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fbfcfd;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.buttonmode label,
+.checkboxlike {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th,
+td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #eef2f6;
+  text-align: left;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+tbody tr:hover {
+  background: #f8fbff;
+}
+
+tbody tr.active {
+  background: var(--accent-soft);
+}
+
+th.tiny,
+td.tiny {
+  width: 48px;
+}
+
+th.small,
+td.small {
+  width: 90px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.editor {
+  display: grid;
+  gap: 14px;
+  padding-top: 10px;
+  border-top: 1px solid #eef2f6;
+}
+
+.tasklite-head {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.readonlybox {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fbfcfd;
+  padding: 12px 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.readonlybox span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.readonlybox strong {
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+#logsBox {
+  margin: 0;
+  min-height: 260px;
+  max-height: 420px;
+  overflow: auto;
+  background: #101821;
+  color: #d7e3ee;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+@media (max-width: 1200px) {
+  .maincols,
+  .formgrid-4,
+  .formgrid-3,
+  .formgrid-2,
+  .quickgrid,
+  .tasklite-head,
+  .topbar {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .statusstack {
+    min-width: 0;
+  }
+}
+
+.account-settings { margin-top: 16px; }
+.account-settings summary { cursor: pointer; margin-bottom: 12px; }
